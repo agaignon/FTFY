@@ -1,6 +1,7 @@
 import os
 import string
 
+
 class Action:
     def __init__(self, directory_name, rule):
         self.directory_name = directory_name
@@ -49,7 +50,11 @@ class Action:
         elif self.rule.get_initiation() == 'letter':
             from_init = self.alphabet_to_int(self.rule.get_from_init())
         elif self.rule.get_initiation() == 'number':
-            from_init = int(self.rule.get_from_init())
+            number = self.rule.get_from_init()
+            if number.isdigit():
+                from_init = int(number)
+            else:
+                from_init = 0
 
         for original_file_name in original_file_names:
             renamed_file_name, extension = os.path.splitext(original_file_name)

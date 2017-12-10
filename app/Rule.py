@@ -1,11 +1,13 @@
 class Rule:
-    def __init__(self, initiation, from_init, prefix, file_name, suffix, extension):
+    def __init__(self, initiation, from_init, prefix, file_name, suffix, extension, rule_name = ''):
         self.initiation = initiation
         self.from_init = from_init
         self.prefix = prefix
         self.file_name = file_name
         self.suffix = suffix
+        extension = [x.strip() for x in extension]
         self.extension = extension
+        self.rule_name = rule_name
 
     def get_initiation(self):
         return self.initiation
@@ -43,12 +45,19 @@ class Rule:
     def set_extension(self, extension):
         self.extension = extension
 
+    def get_rule_name(self):
+        return self.rule_name
+
+    def set_rule_name(self, rule_name):
+        self.rule_name = rule_name
+
     def __str__(self):
         string = "Initiation : '" + self.initiation + "' \n" \
                  "From init : '" + self.from_init + "' \n" \
                  "Prefix : '" + self.prefix + "' \n" \
                  "File name : '" + str(self.file_name) + "' \n" \
                  "Suffix : '" + self.suffix + "' \n" \
+                 "Rule name : '" + self.rule_name + "' \n" \
                  "Extension : '"
         i = 1
         for e in self.extension:

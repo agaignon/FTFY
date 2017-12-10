@@ -1,4 +1,4 @@
-from Rule import *
+from app.Rule import *
 
 
 class RuleList:
@@ -22,29 +22,27 @@ class RuleList:
             string = ''
             for r in self.rules:
                 string += r.get_initiation() + ',' + r.get_from_init() + ',' + r.get_prefix() + ',' + \
-                          str(r.get_file_name()) + ',' + r.get_suffix() + '/'
+                          str(r.get_file_name()) + ',' + r.get_suffix() + ',' + r.get_rule_name() + '/'
                 i = 1
                 for e in r.get_extension():
                     string += e
                     if i < len(r.get_extension()):
                         string += ','
-                    else:
-                        string += '\n'
                     i += 1
+                string += '\n'
             file.write(string)
 
     def save(self, file_name, rule):
         with open(file_name, 'a', encoding='utf-8') as file:
             string = rule.get_initiation() + ',' + rule.get_from_init() + ',' + rule.get_prefix() + ',' + \
-                      str(rule.get_file_name()) + ',' + rule.get_suffix() + '/'
+                      str(rule.get_file_name()) + ',' + rule.get_suffix() + ',' + rule.get_rule_name() + '/'
             i = 1
             for e in rule.get_extension():
                 string += e
                 if i < len(rule.get_extension()):
                     string += ','
-                else:
-                    string += '\n'
                 i += 1
+            string += '\n'
             file.write(string)
 
     def load(self, file_name):
@@ -62,7 +60,7 @@ class RuleList:
                 file_name_attributes[3] = False
 
             rule = Rule(file_name_attributes[0], file_name_attributes[1], file_name_attributes[2],
-                        file_name_attributes[3], file_name_attributes[4], extension)
+                        file_name_attributes[3], file_name_attributes[4], extension, file_name_attributes[5])
 
             self.rules.append(rule)
 
