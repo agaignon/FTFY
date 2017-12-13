@@ -1,6 +1,11 @@
 from app.RuleFrame import *
 from app.RuleListFrame import *
 
+'''
+This class is used to display the toolbar from which the user can open the rule and rule list frames
+The user can also get some info about the software
+'''
+
 
 class Toolbar:
     def __init__(self, master, rename_frame):
@@ -17,12 +22,18 @@ class Toolbar:
         self.master.config(menu = self.menu_bar)
 
     def open_rule_list_frame(self):
+        '''
+        Opens the rule list frame
+        '''
         self.new_window_rl = Toplevel(self.master)
         self.new_window_rl.title('Liste des règles')
         self.new_window_rl.minsize(width = 300, height = 300)
         self.rule_list_frame = RuleListFrame(self.new_window_rl, self.rename_frame)
 
     def open_rule_frame(self):
+        '''
+        Opens the rule frame
+        '''
         self.new_window_r = Toplevel(self.master)
         self.new_window_r.title('Créer une règle')
         self.new_window_r.resizable(width = False, height = False)
@@ -30,6 +41,9 @@ class Toolbar:
         self.rule_frame = RuleFrame(self.new_window_r)
 
     def open_about(self):
+        '''
+        Displays the software info
+        '''
         messagebox.showinfo('A propos', "FTFY version 1.0 \n\n"
                                         "Logiciel développé par Augustin Gaignon \n\n"
                                         "FTFY veut dire 'Fixed That For You' qui se traduit par "

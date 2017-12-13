@@ -3,6 +3,11 @@ from tkinter import messagebox
 from app.FrameTemplate import *
 from app.RuleList import *
 
+'''
+This class is used to display the rule frame from which you can create and persist a Rule
+It extends FrameTemplate and adds the specific labels and button
+'''
+
 
 class RuleFrame(FrameTemplate):
     def __init__(self, master):
@@ -18,6 +23,13 @@ class RuleFrame(FrameTemplate):
         self.create_button.place(x = 450, y = 225)
 
     def create(self):
+        '''
+        Retrieves the Rule created from the user inputs
+        Sets the Rule name retrieved from the name_entry
+        Instantiates an empty RuleList
+        Adds the Rule to the RuleList which also persists the Rule in the .ini file
+        Closes the window and triggers a popup
+        '''
         rule = self.get_rule()
         rule.set_rule_name(self.name_entry.get())
         rule_list = RuleList([])

@@ -1,5 +1,13 @@
+'''
+This class is used to encapsulate the different data inputs of the interfaces' forms
+'''
+
+
 class Rule:
     def __init__(self, initiation, from_init, prefix, file_name, suffix, extension, rule_name = ''):
+        '''
+        Extension list is stripped to clean the data in case the user inputs spaces
+        '''
         self.initiation = initiation
         self.from_init = from_init
         self.prefix = prefix

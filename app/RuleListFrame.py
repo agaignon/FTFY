@@ -3,9 +3,18 @@ from tkinter import ttk
 
 from app.RuleList import *
 
+'''
+This class is used to display the list of Rules that the user can click on to select and apply a Rule
+which fills the rename frame inputs with the Rule attributes' values
+'''
+
 
 class RuleListFrame:
     def __init__(self, master, rename_frame):
+        '''
+        Loads the Rule list from the .ini file
+        Loops over the Rule list to display the Rule names as radio buttons that the user can then select
+        '''
         self.master = master
         self.rename_frame = rename_frame
 
@@ -32,6 +41,12 @@ class RuleListFrame:
         self.close_button.place(relx = 0.5, rely = 0.9)
 
     def apply(self):
+        '''
+        Retrieves the Rule using the selected radio button value
+        Clears the rename frame form (I guess I could have used the clear_form() function but whatever)
+        Sets the rename frame inputs with the Rule attributes' values
+        Closes the window
+        '''
         rule = self.rules[self.radio_var.get()]
         MAPPING = {'' : 'Aucune', 'letter' : 'Lettre', 'number' : 'Chiffre'}
         self.rename_frame.combo_var.set(MAPPING[rule.get_initiation()])
@@ -64,4 +79,7 @@ class RuleListFrame:
         self.master.destroy()
 
     def close(self):
+        '''
+        Closes the window
+        '''
         self.master.destroy()

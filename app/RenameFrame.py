@@ -2,6 +2,11 @@ from app.FrameTemplate import *
 from app.Rename import *
 from app.SimulationFrame import *
 
+'''
+This class is used to display the rename frame from which you can launch the simulation frame
+It extends FrameTemplate and adds the specific labels and button
+'''
+
 
 class RenameFrame(FrameTemplate):
     def __init__(self, master):
@@ -17,6 +22,12 @@ class RenameFrame(FrameTemplate):
         self.rename_button.place(x = 450, y = 225)
 
     def rename(self):
+        '''
+        Checks if the given path leads to an existing directory if not a popup is triggered
+        Retrieves the Rule created from the user inputs
+        Instantiates a Rename object
+        Launches the simulation frame in a new window
+        '''
         directory_name = self.name_entry.get()
         if os.path.isdir(directory_name):
             rule = self.get_rule()

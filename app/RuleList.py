@@ -1,5 +1,9 @@
 from app.Rule import *
 
+'''
+This class is used to load and persist the Rule list
+'''
+
 
 class RuleList:
     def __init__(self, rules):
@@ -18,6 +22,9 @@ class RuleList:
         return string
 
     def save_all(self, file_name):
+        '''
+        Persists all the rules provided by the Rule list in a file with a csv like format
+        '''
         with open(file_name, 'w', encoding = 'utf-8') as file:
             string = ''
             for r in self.rules:
@@ -33,6 +40,9 @@ class RuleList:
             file.write(string)
 
     def save(self, file_name, rule):
+        '''
+        Persists the rule given as parameter in a file with a csv like format
+        '''
         with open(file_name, 'a', encoding='utf-8') as file:
             string = rule.get_initiation() + ',' + rule.get_from_init() + ',' + rule.get_prefix() + ',' + \
                       str(rule.get_file_name()) + ',' + rule.get_suffix() + ',' + rule.get_rule_name() + '/'
@@ -46,6 +56,9 @@ class RuleList:
             file.write(string)
 
     def load(self, file_name):
+        '''
+        Loads and creates the Rule list from the given csv like file
+        '''
         with open(file_name, 'r', encoding='utf-8') as file:
             lines = file.readlines()
         lines = [x.strip() for x in lines]
@@ -65,5 +78,8 @@ class RuleList:
             self.rules.append(rule)
 
     def add_rule(self, file_name, rule):
+        '''
+        Adds the given Rule to the Rule list and persists it using save()
+        '''
         self.rules.append(rule)
         self.save(file_name, rule)

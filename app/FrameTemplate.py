@@ -3,6 +3,10 @@ from tkinter import ttk
 
 from app.Rule import *
 
+'''
+This class is used as a parent for the RenameFrame and the RuleFrame because they share a common layout
+'''
+
 
 class FrameTemplate:
     def __init__(self, master):
@@ -61,6 +65,9 @@ class FrameTemplate:
         self.image_label.place(x = 450, y = 20)
 
     def get_rule(self):
+        '''
+        Returns the Rule created from the user inputs
+        '''
         initiation = self.MAPPING[self.initiation_box.get()]
         from_init = self.from_init_entry.get()
         prefix = self.prefix_entry.get()
@@ -76,6 +83,9 @@ class FrameTemplate:
         return Rule(initiation, from_init, prefix, file_name, suffix, extension)
 
     def clear_form(self):
+        '''
+        Clears the form inputs
+        '''
         self.name_entry.delete(0, END)
         self.combo_var.set('Aucune')
         self.from_init_entry.delete(0, END)
